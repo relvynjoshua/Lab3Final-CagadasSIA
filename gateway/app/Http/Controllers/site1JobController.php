@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Response;
+use App\Traits\ApiResponser;
+use App\Services\siteService;
+
+class site1JobController extends Controller
+{
+    use ApiResponser;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @var siteService
+     */
+
+    public $siteService;
+
+    public function __construct(siteService $siteService)
+    {
+        $this->siteService = $siteService;
+    }
+
+    public function index() 
+    {
+        return $this->successResponse($this->siteService->index());
+    }
+
+    public function show($id) 
+    {
+        return $this->successResponse($this->siteService->show($id));
+    }
+}
